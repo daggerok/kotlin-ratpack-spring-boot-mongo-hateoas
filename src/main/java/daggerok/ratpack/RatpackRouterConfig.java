@@ -65,18 +65,17 @@ public class RatpackRouterConfig {
 
     }).then(map -> {
 
-      final JsonRender responseBody = Jackson.json(map);
-      ctx.render(responseBody);
+      final JsonRender result = Jackson.json(map);
+      ctx.render(result);
 
     });
   }
 
   @Bean
-  Action<Chain> paths() {
-    return chain -> chain
-        .get(":one", one())
-        .get(":one/:two", two())
-        .get(":one/:two/:three", deeper())
-        .get(ctx -> ctx.render("hey! " + messageService.makesMeHappy()));
+  Action<Chain> routes() {
+    return chain -> chain.get(":one", one())
+                         .get(":one/:two", two())
+                         .get(":one/:two/:three", deeper())
+                         .get(ctx -> ctx.render("hey! " + messageService.makesMeHappy()));
   }
 }
