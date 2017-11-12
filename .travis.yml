@@ -19,7 +19,7 @@ before_install:
 
 script:
   - bash gradlew build
-  - bash build/libs/*.jar
+  - bash build/libs/*.jar &
   - sleep 15
 
   # ratpack REST API:
@@ -30,7 +30,7 @@ script:
 
   # mongo hateoas repo:
   - http :8080
-  - http :8080//users
+  - http :8080/users
 
 cache:
   directories:

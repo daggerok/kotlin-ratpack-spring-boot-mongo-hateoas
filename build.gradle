@@ -17,15 +17,22 @@ plugins {
   id "org.springframework.boot" version "1.5.8.RELEASE"
 }
 
-springBoot.executable = true
-
-task wrapper(type: Wrapper) {
-  gradleVersion = "4.3.1"
-  distributionType = "ALL"
-}
-
 def compatibility = 1.8
 sourceCompatibility = targetCompatibility = compatibility
+
+apply plugin: "kotlin"
+
+compileKotlin {
+  kotlinOptions {
+    jvmTarget = compatibility
+  }
+}
+
+compileTestKotlin {
+  kotlinOptions {
+    jvmTarget = compatibility
+  }
+}
 
 repositories {
   mavenLocal()
@@ -52,16 +59,9 @@ dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
 }
 
-apply plugin: "kotlin"
+springBoot.executable = true
 
-compileKotlin {
-  kotlinOptions {
-    jvmTarget = compatibility
-  }
-}
-
-compileTestKotlin {
-  kotlinOptions {
-    jvmTarget = compatibility
-  }
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.3.1"
+  distributionType = "ALL"
 }
