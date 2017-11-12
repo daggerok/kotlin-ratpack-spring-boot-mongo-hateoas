@@ -1,0 +1,67 @@
+buildscript {
+  ext {
+    ratpackVersion = "1.5.0"
+    kotlinVersion = "1.1.51"
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+  }
+}
+
+plugins {
+  id "idea"
+  id "java"
+  id "org.springframework.boot" version "1.5.8.RELEASE"
+}
+
+springBoot.executable = true
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "4.3.1"
+  distributionType = "ALL"
+}
+
+def compatibility = 1.8
+sourceCompatibility = targetCompatibility = compatibility
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+}
+
+dependencies {
+  compileOnly("org.projectlombok:lombok")
+  compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+  compile("org.springframework.data:spring-data-rest-webmvc")
+  compile("de.flapdoodle.embed:de.flapdoodle.embed.mongo")
+  compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+  [
+      "ratpack-spring-boot",
+      "ratpack-thymeleaf",
+
+  ].each { compile "io.ratpack:$it:$ratpackVersion" }
+
+  runtime("org.springframework.boot:spring-boot-devtools")
+
+  testCompileOnly("org.projectlombok:lombok")
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion"
+}
+
+apply plugin: "kotlin"
+
+compileKotlin {
+  kotlinOptions {
+    jvmTarget = compatibility
+  }
+}
+
+compileTestKotlin {
+  kotlinOptions {
+    jvmTarget = compatibility
+  }
+}
