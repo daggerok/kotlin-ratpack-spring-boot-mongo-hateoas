@@ -25,8 +25,8 @@ script:
   # ratpack REST API:
   - http :5050
   - http :5050/Max
-  - http :5050/skip/f
-  - http :5050/skip/skip/ax
+  - http :5050/skip/x
+  - http :5050/skip/f/b
 
   # mongo hateoas repo:
   - http :8080

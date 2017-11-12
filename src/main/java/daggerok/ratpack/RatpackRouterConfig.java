@@ -34,7 +34,9 @@ public class RatpackRouterConfig {
   @Bean
   Handler one() {
     return ctx -> Blocking
-        .get(() -> singletonMap("first by username", userRepository.findFirstByUsername(ctx.getAllPathTokens().get("one"))))
+        .get(() -> singletonMap("first by username",
+                                userRepository.findFirstByUsernameContainingIgnoreCase(
+                                    ctx.getAllPathTokens().get("one"))))
         .then(map -> ctx.render(Jackson.json(map)));
   }
 
@@ -44,7 +46,7 @@ public class RatpackRouterConfig {
         Blocking.get(() -> {
 
           final String name = ctx.getAllPathTokens().getOrDefault("two", "hz...");
-          final User user = userRepository.findFirstByUsernameContainingIgnoreCase(name);
+          final List<User> user = userRepository.findAllByUsernameContainingIgnoreCase(name);
 
           return singletonMap("find by username like", user);
 
@@ -55,8 +57,9 @@ public class RatpackRouterConfig {
   Handler deeper() {
     return ctx -> Blocking.get(() -> {
 
-      final String username = ctx.getAllPathTokens().get("three");
-      final List<User> users = userRepository.findAllByUsernameContainingIgnoreCase(username);
+      final String that = ctx.getAllPathTokens().get("two");
+      final String those = ctx.getAllPathTokens().get("three");
+      final List<User> users = userRepository.findAllByUsernameContainingIgnoreCaseOrUsernameContainingIgnoreCase(that, those);
 
       return singletonMap("all by username like", users);
 

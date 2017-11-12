@@ -26,6 +26,8 @@ interface UserRepository : MongoRepository<User, String> {
   fun findFirstByUsernameContainingIgnoreCase(name: String): User?
 
   fun findAllByUsernameContainingIgnoreCase(name: String): List<User>
+
+  fun findAllByUsernameContainingIgnoreCaseOrUsernameContainingIgnoreCase(that: String, tose: String): List<User>
 }
 
 @Configuration
