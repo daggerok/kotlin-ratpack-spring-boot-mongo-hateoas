@@ -33,6 +33,6 @@ http :8080/users
 == other repositories
 
 - link:https://github.com/daggerok/spring-boot-2-x-hateoas-example[GitHub: daggerok/spring-boot-2-x-hateoas-example]
-- libk:https://github.com/daggerok/HATEOAS-demo[GitHub: daggerok/HATEOAS-demo]
+- link:https://github.com/daggerok/HATEOAS-demo[GitHub: daggerok/HATEOAS-demo]
 
 //end::content[]
