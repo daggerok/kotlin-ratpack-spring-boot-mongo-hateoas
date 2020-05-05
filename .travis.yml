@@ -1,25 +1,23 @@
+notifications:
+  email: off
+
 env:
   global:
     TERM=dumb
 
-group: edge
-dist: trusty
-
 language: java
-jdk:
-  - openjdk8
-  - oraclejdk8
+jdk: openjdk8
+
+addons:
+  apt:
+    packages:
+      - httpie
 
 install: true
-before_install:
-
-  - sudo apt update
-  - sudo apt install -y python-pip curl jq libxml2-utils
-  - sudo pip install httpie
 
 script:
-  - bash gradlew build
-  - bash build/libs/*.jar &
+  - ./gradlew build
+  - bash ./build/libs/*.jar &
   - sleep 15
 
   # ratpack REST API:
@@ -31,12 +29,11 @@ script:
   # mongo hateoas repo:
   - http :8080
   - http :8080/users
-
+  
 cache:
   directories:
     - /usr/local/lib/
-    - $HOME/.gradle/
-    - $HOME/.cache/
-    - $HOME/.nvm/
-    - $HOME/.m2/
-    - 01-spring-boot-ratpack/.gradle/
+    - ~/.gradle/
+    - ~/.cache/
+    - ~/.nvm/
+    - ~/.m2/
