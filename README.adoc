@@ -22,12 +22,16 @@ http :8080
 http :8080/users
 ----
 
-read documentation!
+== resources
 
-. link:https://docs.spring.io/spring-boot/docs/1.5.8.RELEASE/reference/htmlsingle/[spring-boot documentation]
-. link:https://docs.spring.io/spring-data/data-mongodb/docs/1.10.x/reference/html/[spring-data-mongodb documentation]
-. link:https://docs.spring.io/spring-hateoas/docs/current/reference/html/[spring HATEOAS documentation]
-. link:https://ratpack.io/manual/current/index.html[ratpack documentation]
-. link:https://kotlinlang.org/docs/reference/[kotlin documentation]
+- link:https://docs.spring.io/spring-boot/docs/1.5.8.RELEASE/reference/htmlsingle/[spring-boot documentation]
+- link:https://docs.spring.io/spring-data/data-mongodb/docs/1.10.x/reference/html/[spring-data-mongodb documentation]
+- link:https://docs.spring.io/spring-hateoas/docs/current/reference/html/[spring HATEOAS documentation]
+- link:https://ratpack.io/manual/current/index.html[ratpack documentation]
+- link:https://kotlinlang.org/docs/reference/[kotlin documentation]
+
+== other repositories
+
+- link:https://github.com/daggerok/spring-boot-2-x-hateoas-example[GitHub: daggerok/spring-boot-2-x-hateoas-example]
 
 //end::content[]
